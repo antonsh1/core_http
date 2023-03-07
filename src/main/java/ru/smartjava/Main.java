@@ -8,7 +8,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.LaxRedirectStrategy;
 import ru.smartjava.classes.NasaResponse;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,7 +41,7 @@ public class Main {
         request.setHeader(HttpHeaders.ACCEPT, ContentType.APPLICATION_JSON.getMimeType());
 
         //Обращаемся к ресурсу и преобразуем результат
-        try(CloseableHttpResponse response = httpClient.execute(request)) {
+        try (CloseableHttpResponse response = httpClient.execute(request)) {
             nasaResponse = mapper.readValue(response.getEntity().getContent(), NasaResponse.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -48,7 +51,9 @@ public class Main {
         String fileName = nasaResponse.getUrl().split("/")[nasaResponse.getUrl().split("/").length - 1];
 
         //Сохраняем файл с картинкой
-        try (InputStream in = new URL(nasaResponse.getUrl()).openStream()) {
+        try (CloseableHttpResponse response = httpClient.execute(new HttpGet(nasaResponse.getUrl()));
+             InputStream in = response.getEntity().getContent();
+        ) {
             Files.copy(in, Paths.get(path + fileName), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new RuntimeException(e);
