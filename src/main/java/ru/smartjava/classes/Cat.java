@@ -1,7 +1,5 @@
 package ru.smartjava.classes;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Cat {
     String id;
     String text;
@@ -10,11 +8,11 @@ public class Cat {
     Integer upvotes;
 
     public Cat(
-            @JsonProperty("id") String id,
-            @JsonProperty("text") String text,
-            @JsonProperty("type") String type,
-            @JsonProperty("user") String user,
-            @JsonProperty("upvotes") Integer upvotes
+            String id,
+            String text,
+            String type,
+            String user,
+            Integer upvotes
     ) {
         this.id = id;
         this.text = text;
