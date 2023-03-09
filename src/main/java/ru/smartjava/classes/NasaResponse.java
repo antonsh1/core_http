@@ -3,18 +3,16 @@ package ru.smartjava.classes;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class NasaResponse {
-    @JsonProperty("copyright")
-    private String copyright;
     @JsonProperty("date")
     private String date;
     @JsonProperty("explanation")
     private String explanation;
     @JsonProperty("hdurl")
-    private String hdurl;
+    private String hdUrl;
     @JsonProperty("media_type")
-    private String media_type;
+    private String mediaType;
     @JsonProperty("service_version")
-    private String service_version;
+    private String serviceVersion;
     @JsonProperty("title")
     private String title;
     @JsonProperty("url")
@@ -27,12 +25,11 @@ public class NasaResponse {
     @Override
     public String toString() {
         return "NasaResponse{" +
-                "copyright='" + copyright + '\'' +
                 ", date='" + date + '\'' +
                 ", explanation='" + explanation + '\'' +
-                ", hdurl='" + hdurl + '\'' +
-                ", media_type='" + media_type + '\'' +
-                ", service_version='" + service_version + '\'' +
+                ", hdUrl='" + hdUrl + '\'' +
+                ", mediaType='" + mediaType + '\'' +
+                ", serviceVersion='" + serviceVersion + '\'' +
                 ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
                 '}';

@@ -8,14 +8,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.impl.client.LaxRedirectStrategy;
 import ru.smartjava.classes.NasaResponse;
-
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -46,7 +42,7 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        System.out.println(nasaResponse);
         //Берем последнюю часть url с названием файла
         String fileName = nasaResponse.getUrl().split("/")[nasaResponse.getUrl().split("/").length - 1];
 
